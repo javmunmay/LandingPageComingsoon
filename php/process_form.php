@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Ejecutar la consulta
         if ($stmt->execute()) {
             // Si la inserción fue exitosa, mostrar una página intermedia
-            echo json_encode(['success' => true, 'message' => 'Registro exitoso.']);
+            header("url=https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink");
             exit;
         } else {
             echo json_encode(['success' => false, 'message' => 'Error al guardar los datos.']);
