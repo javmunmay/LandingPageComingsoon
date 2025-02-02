@@ -45,17 +45,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink");
             exit;
         } else {
-            echo json_encode(['success' => false, 'message' => 'Error al guardar los datos.']);
+            header("Location: https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink");
             exit;
         }
     } catch (PDOException $e) {
         // Capturar errores de PDO (por ejemplo, problemas de conexión o restricciones únicas)
-        echo json_encode(['success' => false, 'message' => 'Error interno del servidor: ' . $e->getMessage()]);
+        header("Location: https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink");
         exit;
     }
 } else {
     // Si no se envió el formulario correctamente
-    echo json_encode(['success' => false, 'message' => 'Método no permitido.']);
+    header("Location: https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink");
     exit;
 }
 ?>
