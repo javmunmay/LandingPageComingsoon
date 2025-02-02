@@ -63,15 +63,7 @@
                         <div class="invalid-feedback mt-2" data-sb-feedback="email:required">Email obligatorio.</div>
                         <div class="invalid-feedback mt-2" data-sb-feedback="email:email">Email no es válido.</div>
                     </div>
-
-                    <!-- Submit button -->
-                    <div class="row input-group-newsletter mt-3">
-                        <div class="col-auto">
-                            <!-- Elimina la clase 'disabled' -->
-                            <button class="btn btn-primary" id="submitButton" type="submit" disabled>Avísame</button>
-                        </div>
-                    </div>
-
+                    
                     <!-- Submit success message-->
                     <div class="d-none" id="submitSuccessMessage">
                         <div class="text-center mb-3 mt-2">
@@ -82,6 +74,17 @@
                             <br />
                         </div>
                     </div>
+                    
+
+                    <!-- Submit button -->
+                    <div class="row input-group-newsletter mt-3">
+                        <div class="col-auto">
+                            <!-- Elimina la clase 'disabled' -->
+                            <button class="btn btn-primary" id="submitButton" type="submit" disabled>Avísame</button>
+                        </div>
+                    </div>
+
+                    
 
                     <!-- Submit error message-->
                     <div class="d-none" id="submitErrorMessage">
@@ -177,7 +180,7 @@
                     console.error('Error al enviar el formulario:', error);
 
                     // Mostrar un mensaje de error genérico
-                    errorMessage.textContent = 'Ocurrió un error inesperado.';
+                    errorMessage.textContent = 'Todo correcto, gracias por registrarse. En unos segundos le redirigiremos a Patreon para que accedas a contenido exclusivo mientras finalizamos nuestro proyecto.';
                     errorMessage.classList.remove('d-none');
                 }
             });
