@@ -136,38 +136,7 @@
             });
 
 
-            document.addEventListener('DOMContentLoaded', function () {
-            const form = document.getElementById('contactForm');
-            const successMessage = document.getElementById('successMessage');
-            const errorMessage = document.getElementById('errorMessage');
-
-            form.addEventListener('submit', async function (event) {
-                event.preventDefault(); // Evitar el envío predeterminado
-
-                // Mostrar un estado de carga o similar si es necesario
-                const response = await fetch(this.action, {
-                    method: 'POST',
-                    body: new FormData(this),
-                });
-
-                const result = await response.json();
-
-                if (result.success) {
-                    // Ocultar el formulario y mostrar el mensaje de éxito
-                    form.style.display = 'none';
-                    successMessage.classList.remove('d-none');
-
-                    // Redirigir después de 3 segundos
-                    setTimeout(function () {
-                        window.location.href = 'https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink';
-                    }, 3000);
-                } else {
-                    // Mostrar el mensaje de error
-                    errorMessage.textContent = result.message;
-                    errorMessage.classList.remove('d-none');
-                }
-            });
-        });
+            
         </script>
     </body>
 </html>
