@@ -144,7 +144,45 @@
 
 
 
-        
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('contactForm');
+            const successMessage = document.getElementById('submitSuccessMessage');
+            const errorMessage = document.getElementById('submitErrorMessage');
+
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault(); // Evitar el envío predeterminado
+
+                try {
+                    // Enviar los datos del formulario al backend
+                    const response = await fetch(this.action, {
+                        method: 'POST',
+                        body: new FormData(this),
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        // Mostrar el mensaje de éxito
+                        successMessage.classList.remove('d-none');
+
+                        // Ocultar el formulario
+                        form.style.display = 'none';
+                    } else {
+                        // Mostrar el mensaje de error
+                        errorMessage.textContent = result.message;
+                        errorMessage.classList.remove('d-none');
+                    }
+                } catch (error) {
+                    console.error('Error al enviar el formulario:', error);
+
+                    // Mostrar un mensaje de error genérico
+                    errorMessage.textContent = 'Ocurrió un error inesperado.';
+                    errorMessage.classList.remove('d-none');
+                }
+            });
+        });
+
 
 
     </script>
