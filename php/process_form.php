@@ -9,20 +9,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validaciones básicas
     if (empty($name)) {
-        $response = array('success' => false, 'message' => 'El nombre es obligatorio.');
-        echo json_encode($response);
+        echo json_encode(['success' => false, 'message' => 'El nombre es obligatorio.']);
         exit;
     }
 
     if (empty($email)) {
-        $response = array('success' => false, 'message' => 'El correo electrónico es obligatorio.');
-        echo json_encode($response);
+        echo json_encode(['success' => false, 'message' => 'El correo electrónico es obligatorio.']);
         exit;
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $response = array('success' => false, 'message' => 'El correo electrónico no es válido.');
-        echo json_encode($response);
+        echo json_encode(['success' => false, 'message' => 'El correo electrónico no es válido.']);
         exit;
     }
 
@@ -45,26 +42,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Ejecutar la consulta
         if ($stmt->execute()) {
-            // Si la inserción fue exitosa, mostrar un mensaje y redirigir después de 2 segundos
-            header("Refresh: 3; url=https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink");
-            
+            // Si la inserción fue exitosa, mostrar una página intermedia
+            echo json_encode(['success' => true, 'message' => 'Registro exitoso.']);
             exit;
         } else {
-            // Si ocurrió un error durante la inserción
-            $response = array('success' => false, 'message' => 'Error al guardar los datos.');
-            echo json_encode($response);
+            echo json_encode(['success' => false, 'message' => 'Error al guardar los datos.']);
             exit;
         }
     } catch (PDOException $e) {
-        // Capturar errores de PDO (por ejemplo, problemas de conexión o restricciones únicas)
-        $response = array('success' => false, 'message' => 'Error interno del servidor: ' . $e->getMessage());
-        echo json_encode($response);
+        echo json_encode(['success' => false, 'message' => 'Error interno del servidor: ' . $e->getMessage()]);
         exit;
     }
 } else {
-    // Si no se envió el formulario correctamente
-    $response = array('success' => false, 'message' => 'Método no permitido.');
-    echo json_encode($response);
+    echo json_encode(['success' => false, 'message' => 'Método no permitido.']);
     exit;
 }
 ?>

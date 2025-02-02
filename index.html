@@ -1,139 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Estudiante Programador - Pre Lanzamiento</title>
-        <link rel="icon" type="image/x-icon" href="assets/Estudiante.jpg" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;display=swap" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
-    <body>
-        <!-- Background Video-->
-        <video class="bg-video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="assets/mp4/bg.mp4" type="video/mp4" /></video>
-        <!-- Masthead-->
-        <div class="masthead">
-            <div class="masthead-content text-white">
-                <div class="container-fluid px-4 px-lg-0">
-                    <h1 class="fst-italic lh-1 mb-4">Pre Lanzamiento Muy Pronto</h1>
-                    <p class="mb-5">Estamos trabajando para ofrecerte una plataforma segura y de alto valor. Regístrate en nuestra lista de espera introduciendo tu correo electrónico, y te redirigiremos a Patreon para que accedas a contenido exclusivo mientras finalizamos nuestro proyecto. <br> ¡Únete hoy mismo! </p>
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- * * SB Forms Contact Form * *-->
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- This form is pre-integrated with SB Forms.-->
-                    <!-- To make this form functional, sign up at-->
-                    <!-- https://startbootstrap.com/solution/contact-forms-->
-                    <!-- to get an API token!-->
-                    <form id="contactForm" action="php/process_form.php" method="POST">
-                        <!-- Nombre input -->
-                        <div class="row input-group-newsletter mb-3">
-                            <div class="col">
-                                <input 
-                                    class="form-control" 
-                                    id="name" 
-                                    name="name"
-                                    type="text" 
-                                    placeholder="Introduzca su nombre completo..." 
-                                    aria-label="Enter your name..." 
-                                    data-sb-validations="required" 
-                                />
-                            </div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="name:required">Nombre obligatorio.</div>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Estudiante Programador - Pre Lanzamiento</title>
+    <link rel="icon" type="image/x-icon" href="assets/Estudiante.jpg" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Background Video-->
+    <video class="bg-video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="assets/mp4/bg.mp4" type="video/mp4" /></video>
+    <!-- Masthead-->
+    <div class="masthead">
+        <div class="masthead-content text-white">
+            <div class="container-fluid px-4 px-lg-0">
+                <h1 class="fst-italic lh-1 mb-4">Pre Lanzamiento Muy Pronto</h1>
+                <p class="mb-5">Estamos trabajando para ofrecerte una plataforma segura y de alto valor. Regístrate en nuestra lista de espera introduciendo tu correo electrónico, y te redirigiremos a Patreon para que accedas a contenido exclusivo mientras finalizamos nuestro proyecto. <br> ¡Únete hoy mismo! </p>
+                <!-- Formulario -->
+                <form id="contactForm" action="php/process_form.php" method="POST">
+                    <!-- Nombre input -->
+                    <div class="row input-group-newsletter mb-3">
+                        <div class="col">
+                            <input 
+                                class="form-control" 
+                                id="name" 
+                                name="name" 
+                                type="text" 
+                                placeholder="Introduzca su nombre completo..." 
+                                aria-label="Enter your name..." 
+                                data-sb-validations="required" 
+                            />
                         </div>
-                    
-                        <!-- Email address input-->
-                        <div class="row input-group-newsletter">
-                            <div class="col">
-                                <input 
-                                    class="form-control" 
-                                    id="email" 
-                                    name="email"
-                                    type="email" 
-                                    placeholder="Introduzca su correo electrónico..." 
-                                    aria-label="Enter email address..." 
-                                    data-sb-validations="required,email" 
-                                />
-                            </div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="email:required">Email obligatorio.</div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="email:email">Email no es válido.</div>
+                        <div class="invalid-feedback mt-2" data-sb-feedback="name:required">Nombre obligatorio.</div>
+                    </div>
+
+                    <!-- Email address input-->
+                    <div class="row input-group-newsletter">
+                        <div class="col">
+                            <input 
+                                class="form-control" 
+                                id="email" 
+                                name="email" 
+                                type="email" 
+                                placeholder="Introduzca su correo electrónico..." 
+                                aria-label="Enter email address..." 
+                                data-sb-validations="required,email" 
+                            />
                         </div>
-                    
-                        <!-- Submit button -->
-                        <div class="row input-group-newsletter mt-3">
-                            <div class="col-auto">
-                                <!-- Elimina la clase 'disabled' -->
-                                <button class="btn btn-primary" id="submitButton" type="submit" disabled>Avísame</button>
-                            </div>
+                        <div class="invalid-feedback mt-2" data-sb-feedback="email:required">Email obligatorio.</div>
+                        <div class="invalid-feedback mt-2" data-sb-feedback="email:email">Email no es válido.</div>
+                    </div>
+
+                    <!-- Submit button -->
+                    <div class="row input-group-newsletter mt-3">
+                        <div class="col-auto">
+                            <button class="btn btn-primary" id="submitButton" type="submit" disabled>Avísame</button>
                         </div>
-                    
-                        <!-- Submit success message-->
-                        <div class="d-none" id="submitSuccessMessage">
-                            <div class="text-center mb-3 mt-2">
-                                <div class="fw-bolder">Todo correcto, gracias por registrarse. En unos segundos le redirigiremos a Patreon para que accedas a contenido exclusivo mientras finalizamos nuestro proyecto.</div>
-                                <br />
-                            </div>
+                    </div>
+
+                    <!-- Mensaje de éxito -->
+                    <div class="d-none" id="successMessage">
+                        <div class="text-center mb-3 mt-2">
+                            <h3>¡Registro exitoso!</h3>
+                            <p>Gracias por registrarte. Serás redirigido a Patreon en 3 segundos...</p>
                         </div>
-                    
-                        <!-- Submit error message-->
-                        <div class="d-none" id="submitErrorMessage">
-                            <div class="text-center text-danger mb-3 mt-2">Error al enviar el mensaje!</div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+
+                    <!-- Mensaje de error -->
+                    <div class="d-none" id="errorMessage">
+                        <div class="text-center text-danger mb-3 mt-2">Ocurrió un error al procesar tu solicitud.</div>
+                    </div>
+                </form>
             </div>
         </div>
-        <!-- Social Icons-->
-        <!-- For more icon options, visit https://fontawesome.com/icons?d=gallery&p=2&s=brands-->
-        <div class="social-icons">
-            <div class="d-flex flex-row flex-lg-column justify-content-center align-items-center h-100 mt-3 mt-lg-0">
-                <a class="btn btn-dark m-3" href="https://www.tiktok.com/@estudianteprogramador?_t=8oLx3UkybT7&_r=1"><i class="fab fa-tiktok fs-2"></i></a>
-                <a class="btn btn-dark m-3" href="https://www.youtube.com/@ElEstudianteProgramador"><i class="fab fa-youtube fs-2"></i></a>
-                <a class="btn btn-dark m-3" href="https://www.instagram.com/estudianteprogramador/"><i class="fab fa-instagram fs-2"></i></a>
-                <a class="btn btn-dark m-3" href="https://www.patreon.com/c/EstudianteProgramador?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_fan&utm_content=join_link"><i class="fab fa-patreon fs-2"></i></a>
-                <a class="btn btn-dark m-3" href="https://t.me/+XmwVV2phDxBiNTFk"><i class="fab fa-telegram fs-2"></i></a>
-            </div>
+    </div>
+
+    <!-- Social Icons-->
+    <div class="social-icons">
+        <div class="d-flex flex-row flex-lg-column justify-content-center align-items-center h-100 mt-3 mt-lg-0">
+            <a class="btn btn-dark m-3" href="https://www.tiktok.com/@estudianteprogramador?_t=8oLx3UkybT7&_r=1"><i class="fab fa-tiktok fs-2"></i></a>
+            <a class="btn btn-dark m-3" href="https://www.youtube.com/@ElEstudianteProgramador"><i class="fab fa-youtube fs-2"></i></a>
+            <a class="btn btn-dark m-3" href="https://www.instagram.com/estudianteprogramador/"><i class="fab fa-instagram fs-2"></i></a>
+            <a class="btn btn-dark m-3" href="https://www.patreon.com/c/EstudianteProgramador?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_fan&utm_content=join_link"><i class="fab fa-patreon fs-2"></i></a>
+            <a class="btn btn-dark m-3" href="https://t.me/+XmwVV2phDxBiNTFk"><i class="fab fa-telegram fs-2"></i></a>
         </div>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </div>
 
-        <!-- Script personalizado para habilitar el botón -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const nameInput = document.getElementById('name');
-                const emailInput = document.getElementById('email');
-                const submitButton = document.getElementById('submitButton');
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <!-- SB Forms JS-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
-                // Función para validar los campos
-                function validateFields() {
-                    if (nameInput.value.trim() !== '' && emailInput.value.trim() !== '') {
-                        submitButton.disabled = false; // Habilitar el botón
-                    } else {
-                        submitButton.disabled = true; // Deshabilitar el botón
-                    }
+    <!-- Script personalizado -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault(); // Evitar el envío predeterminado
+
+                // Mostrar un estado de carga o similar si es necesario
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: new FormData(this),
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Ocultar el formulario y mostrar el mensaje de éxito
+                    form.style.display = 'none';
+                    successMessage.classList.remove('d-none');
+
+                    // Redirigir después de 3 segundos
+                    setTimeout(function () {
+                        window.location.href = 'https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink';
+                    }, 3000);
+                } else {
+                    // Mostrar el mensaje de error
+                    errorMessage.textContent = result.message;
+                    errorMessage.classList.remove('d-none');
                 }
-
-                // Agregar eventos de escucha a los campos
-                nameInput.addEventListener('input', validateFields);
-                emailInput.addEventListener('input', validateFields);
-
-                // Inicializar el estado del botón
-                validateFields();
             });
-        </script>
-    </body>
+        });
+    </script>
+</body>
 </html>
