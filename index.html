@@ -144,49 +144,7 @@
 
 
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const form = document.getElementById('contactForm');
-            const successMessage = document.getElementById('submitSuccessMessage');
-            const errorMessage = document.getElementById('submitErrorMessage');
-
-            form.addEventListener('submit', async function (event) {
-                event.preventDefault(); // Evitar el envío predeterminado
-
-                try {
-                    // Enviar los datos del formulario al backend
-                    const response = await fetch(this.action, {
-                        method: 'POST',
-                        body: new FormData(this),
-                    });
-
-                    const result = await response.json();
-
-                    if (result.success) {
-                        // Ocultar el formulario
-                        form.style.display = 'none';
-
-                        // Mostrar el mensaje de éxito
-                        successMessage.classList.remove('d-none');
-
-                        // Redirigir después de 3 segundos
-                        setTimeout(function () {
-                            window.location.href =
-                                'https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink';
-                        }, 3000);
-                    } else {
-                        // Mostrar el mensaje de error
-                        errorMessage.textContent = result.message;
-                        errorMessage.classList.remove('d-none');
-                    }
-                } catch (error) {
-                    console.error('Error al enviar el formulario:', error);
-
-                    // Mostrar un mensaje de error genérico
-                    errorMessage.textContent = 'Ocurrió un error inesperado.';
-                    errorMessage.classList.remove('d-none');
-                }
-            });
-        });
+        
 
 
     </script>
