@@ -47,10 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             // Si la inserción fue exitosa, mostrar un mensaje y redirigir después de 2 segundos
             header("Refresh: 3; url=https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink");
-            echo "<div style='text-align: center; margin-top: 50px;'>";
-            echo "<h1>Registro exitoso.</h1>";
-            echo "<p>Redirigiendo a Patreon en 2 segundos...</p>";
-            echo "</div>";
+            
             exit;
         } else {
             // Si ocurrió un error durante la inserción
