@@ -23,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Procesamiento adicional (guardar en una base de datos usando PDO)
     try {
         // Configuración de la conexión a la base de datos
         $dsn = 'mysql:host=PMYSQL181.dns-servicio.com:3306;dbname=10718674_prelanzamiento;charset=utf8mb4';
@@ -42,18 +41,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Ejecutar la consulta
         if ($stmt->execute()) {
-            // Si la inserción fue exitosa, mostrar una página intermedia
-            header("url=https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink");
+            // Si la inserción fue exitosa, redirigir al usuario
+            header("Location: https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink");
             exit;
         } else {
             echo json_encode(['success' => false, 'message' => 'Error al guardar los datos.']);
             exit;
         }
     } catch (PDOException $e) {
+        // Capturar errores de PDO (por ejemplo, problemas de conexión o restricciones únicas)
         echo json_encode(['success' => false, 'message' => 'Error interno del servidor: ' . $e->getMessage()]);
         exit;
     }
 } else {
+    // Si no se envió el formulario correctamente
     echo json_encode(['success' => false, 'message' => 'Método no permitido.']);
     exit;
 }
