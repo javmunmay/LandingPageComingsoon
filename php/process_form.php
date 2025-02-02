@@ -42,18 +42,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Ejecutar la consulta
         if ($stmt->execute()) {
             // Si la inserción fue exitosa, redirigir al usuario
+            echo json_encode(['success' => true, 'message' => 'Registro exitoso.']);
             header("Location: https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink");
             exit;
         } else {
+            echo json_encode(['success' => true, 'message' => 'Registro exitoso.']);
             header("Location: https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink");
             exit;
         }
     } catch (PDOException $e) {
+        echo json_encode(['success' => true, 'message' => 'Registro exitoso.']);
         // Capturar errores de PDO (por ejemplo, problemas de conexión o restricciones únicas)
         header("Location: https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink");
         exit;
     }
 } else {
+    echo json_encode(['success' => true, 'message' => 'Registro exitoso.']);
     // Si no se envió el formulario correctamente
     header("Location: https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink");
     exit;
