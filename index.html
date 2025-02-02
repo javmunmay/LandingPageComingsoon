@@ -67,7 +67,8 @@
                         <!-- Submit button -->
                         <div class="row input-group-newsletter mt-3">
                             <div class="col-auto">
-                                <button class="btn btn-primary disabled" id="submitButton" type="submit">Avísame</button>
+                                <!-- Elimina la clase 'disabled' -->
+                                <button class="btn btn-primary" id="submitButton" type="submit" disabled>Avísame</button>
                             </div>
                         </div>
                     
@@ -107,5 +108,30 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+        <!-- Script personalizado para habilitar el botón -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const submitButton = document.getElementById('submitButton');
+
+                // Función para validar los campos
+                function validateFields() {
+                    if (nameInput.value.trim() !== '' && emailInput.value.trim() !== '') {
+                        submitButton.disabled = false; // Habilitar el botón
+                    } else {
+                        submitButton.disabled = true; // Deshabilitar el botón
+                    }
+                }
+
+                // Agregar eventos de escucha a los campos
+                nameInput.addEventListener('input', validateFields);
+                emailInput.addEventListener('input', validateFields);
+
+                // Inicializar el estado del botón
+                validateFields();
+            });
+        </script>
     </body>
 </html>
