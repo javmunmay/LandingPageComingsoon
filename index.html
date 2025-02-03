@@ -7,6 +7,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Estudiante Programador - Pre Lanzamiento</title>
+
     <link rel="icon" type="image/x-icon" href="assets/Estudiante.jpg" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -19,6 +20,20 @@
         rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WJHR9YWFNQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WJHR9YWFNQ');
+    </script>
+
+
+
+
 </head>
 
 <body>
@@ -63,7 +78,7 @@
                         <div class="invalid-feedback mt-2" data-sb-feedback="email:required">Email obligatorio.</div>
                         <div class="invalid-feedback mt-2" data-sb-feedback="email:email">Email no es válido.</div>
                     </div>
-                    
+
                     <!-- Submit success message-->
                     <div class="d-none" id="submitSuccessMessage">
                         <div class="text-center mb-3 mt-2">
@@ -74,7 +89,7 @@
                             <br />
                         </div>
                     </div>
-                    
+
 
                     <!-- Submit button -->
                     <div class="row input-group-newsletter mt-3">
@@ -84,7 +99,7 @@
                         </div>
                     </div>
 
-                    
+
 
                     <!-- Submit error message-->
                     <div class="d-none" id="submitErrorMessage">
@@ -181,9 +196,10 @@
 
                     // Mostrar un mensaje de error genérico
                     errorMessage.textContent = 'Todo correcto, gracias por registrarse. En unos segundos le redirigiremos a Patreon para que accedas a contenido exclusivo mientras finalizamos nuestro proyecto.';
-                    
+
                     setTimeout(function () {
-                        window.location.href = 'https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink'; }, 3000); // 3000 milisegundos = 3 segundos
+                        window.location.href = 'https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink';
+                    }, 3000); // 3000 milisegundos = 3 segundos
 
                     errorMessage.classList.remove('d-none');
                 }
