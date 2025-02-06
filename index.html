@@ -164,42 +164,48 @@
 
 
 
-        
-        document.getElementById('registrationForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Evita el envío del formulario por defecto
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('contactForm');
+            const successMessage = document.getElementById('submitSuccessMessage');
+            const errorMessage = document.getElementById('submitErrorMessage');
 
-        // Oculta mensajes previos
-        document.getElementById('errorMessage').classList.add('d-none');
-        document.getElementById('successMessage').classList.add('d-none');
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault(); // Evitar el envío predeterminado
 
-        // Validación básica
-        const email = document.getElementById('email').value;
-        const name = document.getElementById('name').value;
+                try {
+                    // Enviar los datos del formulario al backend
+                    const response = await fetch(this.action, {
+                        method: 'POST',
+                        body: new FormData(this),
+                    });
 
-        if (!name || !email) {
-            document.getElementById('errorMessage').textContent = 'Por favor, completa todos los campos.';
-            document.getElementById('errorMessage').classList.remove('d-none');
-            return;
-        }
+                    const result = await response.json();
 
-        // Validación de formato de correo electrónico
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(email)) {
-            document.getElementById('errorMessage').textContent = 'El correo electrónico no es válido.';
-            document.getElementById('errorMessage').classList.remove('d-none');
-            return;
-        }
+                    if (result.success) {
+                        // Mostrar el mensaje de éxito
+                        successMessage.classList.remove('d-none');
 
-        // Simulación de éxito
-        setTimeout(function() {
-            document.getElementById('successMessage').classList.remove('d-none');
-        }, 500);
+                        // Ocultar el formulario
+                        form.style.display = 'none';
+                    } else {
+                        // Mostrar el mensaje de error
+                        errorMessage.textContent = result.message;
+                        errorMessage.classList.remove('d-none');
+                    }
+                } catch (error) {
+                    console.error('Error al enviar el formulario:', error);
 
-        // Redirección a Patreon después de 3 segundos
-        setTimeout(function() {
-            window.location.href = 'https://www.patreon.com/EstudianteProgramador/redeem/343E7';
-        }, 3000);
-    });
+                    // Mostrar un mensaje de error genérico
+                    errorMessage.textContent = 'En unos segundos le redirigiremos a Patreon con 1 mes GRATIS para que accedas a contenido exclusivo mientras finalizamos nuestro proyecto.';
+
+                    setTimeout(function () {
+                        window.location.href = 'https://www.patreon.com/EstudianteProgramador/redeem/343E7';
+                    }, 3000); // 3000 milisegundos = 3 segundos
+
+                    errorMessage.classList.remove('d-none');
+                }
+            });
+        });
 
 
 
