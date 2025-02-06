@@ -1,65 +1,65 @@
 <?php
 // Archivo: process_form.php
 
+// Lista de dominios de correos temporales a bloquear
+$disposable_domains = ['mailinator.com', 'tempmail.com', '10minutemail.com'];
+
 // Verificar si se ha enviado el formulario mediante POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
     $name = isset($_POST['name']) ? trim($_POST['name']) : '';
     $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+    $honeypot = isset($_POST['honeypot']) ? $_POST['honeypot'] : ''; // Campo oculto para evitar bots
 
     // Validaciones básicas
-    if (empty($name)) {
-        echo json_encode(['success' => false, 'message' => 'El nombre es obligatorio.']);
+    if (!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/u", $name)) {
+        echo json_encode(['success' => false, 'message' => 'El nombre solo debe contener letras y espacios.']);
         exit;
     }
 
-    if (empty($email)) {
-        echo json_encode(['success' => false, 'message' => 'El correo electrónico es obligatorio.']);
-        exit;
-    }
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo json_encode(['success' => false, 'message' => 'El correo electrónico no es válido.']);
+        exit;
+    }
+
+    // Verificar si el correo es de un dominio temporal
+    $email_domain = substr(strrchr($email, "@"), 1);
+    if (in_array($email_domain, $disposable_domains)) {
+        echo json_encode(['success' => false, 'message' => 'No se permiten correos temporales.']);
+        exit;
+    }
+
+    // Verificar si el honeypot está vacío (si no, es un bot)
+    if (!empty($honeypot)) {
+        echo json_encode(['success' => false, 'message' => 'Acción no permitida.']);
         exit;
     }
 
     try {
         // Configuración de la conexión a la base de datos
         $dsn = 'mysql:host=PMYSQL181.dns-servicio.com:3306;dbname=10718674_prelanzamiento;charset=utf8mb4';
-        $username = 'Javier'; // Reemplaza con tu usuario de MySQL
-        $password = 'u70q0Z2p@'; // Reemplaza con tu contraseña de MySQL
+        $username = 'Javier';
+        $password = 'u70q0Z2p@';
 
-        // Crear una instancia de PDO
-        $pdo = new PDO($dsn, $username, $password);
+        $pdo = new PDO($dsn, $username, $password, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        ]);
 
-        // Preparar la consulta SQL para insertar datos en la tabla `usuarios`
+        // Preparar la consulta SQL
         $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, correo) VALUES (:name, :email)");
-
-        // Asociar parámetros con valores
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
+        $stmt->execute();
 
-        // Ejecutar la consulta
-        if ($stmt->execute()) {
-            // Si la inserción fue exitosa, redirigir al usuario
-            echo json_encode(['success' => true, 'message' => 'Registro exitoso.']);
-            header("Location: https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink");
-            exit;
-        } else {
-            echo json_encode(['success' => true, 'message' => 'Registro exitoso.']);
-            header("Location: https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink");
-            exit;
-        }
-    } catch (PDOException $e) {
         echo json_encode(['success' => true, 'message' => 'Registro exitoso.']);
-        // Capturar errores de PDO (por ejemplo, problemas de conexión o restricciones únicas)
-        header("Location: https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink");
+        header("Location: https://patreon.com/EstudianteProgramador");
+        exit;
+    } catch (PDOException $e) {
+        echo json_encode(['success' => false, 'message' => 'Error en la base de datos.']);
         exit;
     }
 } else {
-    echo json_encode(['success' => true, 'message' => 'Registro exitoso.']);
-    // Si no se envió el formulario correctamente
-    header("Location: https://patreon.com/EstudianteProgramador?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink");
+    echo json_encode(['success' => false, 'message' => 'Método no permitido.']);
     exit;
 }
 ?>
