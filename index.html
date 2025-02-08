@@ -295,7 +295,8 @@
                                 <input type="email" class="form-control" id="email" name="email"
                                     placeholder="Correo electrónico" required>
                             </div>
-                            <div class="g-recaptcha" data-sitekey="6Lcd0NAqAAAAAIBHKkfB7GIMY15GEz6yHbnTxc3x"></div>
+                            <!-- Input oculto para el token de reCAPTCHA v3 -->
+                            <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
 
                             <br>
                             <button type="submit" class="btn btn-primary">¡Obtener mi mes gratis!</button>
@@ -337,8 +338,9 @@
 
 
 
-    <!-- Script de reCAPTCHA -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- Cargar la API de reCAPTCHA v3 -->
+<script src="https://www.google.com/recaptcha/api.js?render=6Lcd0NAqAAAAAIBHKkfB7GIMY15GEz6yHbnTxc3x"></script>
+
 
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -352,41 +354,51 @@
 
     <!-- Script personalizado para habilitar el botón -->
 
+
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6Lcd0NAqAAAAAIBHKkfB7GIMY15GEz6yHbnTxc3x', { action: 'register' }).then(function (token) {
+                document.getElementById('recaptchaResponse').value = token;
+            });
+        });
+    </script>
+
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const urlParams = new URLSearchParams(window.location.search);
             const messageDiv = document.getElementById("message");
             const successMessage = document.getElementById("successMessage");
-        
+
             let messages = [];
-        
+
             // Verificar si hay mensajes de error
             if (urlParams.has("error")) {
                 messages.push(`<p style="color: red;">${urlParams.get("error")}</p>`);
             }
-        
+
             // Verificar si hay mensajes de éxito
             if (urlParams.has("success")) {
                 messages.push(`<p style="color: green;">${urlParams.get("success")}</p>`);
-                
+
                 // Si existe el div de éxito, hacerlo visible
                 if (successMessage) {
                     successMessage.style.display = "block";
                 }
-        
+
                 // Redirigir a Patreon después de 3 segundos
                 setTimeout(() => {
                     window.location.href = 'https://www.patreon.com/EstudianteProgramador/redeem/343E7';
                 }, 3000);
             }
-        
+
             // Mostrar todos los mensajes en el div principal
             if (messageDiv && messages.length > 0) {
                 messageDiv.innerHTML = messages.join(""); // Unir todos los mensajes en un solo bloque
             }
         });
-        </script>
-        
+    </script>
+
 
 </body>
 
