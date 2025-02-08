@@ -1,62 +1,49 @@
 <?php
-// process_form.php
-
-// Habilitar CORS si es necesario (ajustar según tu entorno)
-if (isset($_SERVER['HTTP_ORIGIN'])) {
-    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-    header('Access-Control-Allow-Credentials: true');
-}
-header("Access-Control-Allow-Methods: GET, HEAD, OPTIONS, POST, PUT");
-header("Access-Control-Allow-Headers: Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept, Authorization");
-
-// Verificar si se ha enviado el formulario mediante POST
-if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    echo json_encode(['success' => false, 'message' => 'Método no permitido.']);
-    exit;
-}
-
-// Obtener datos del formulario
-$name = isset($_POST['name']) ? trim($_POST['name']) : '';
-$email = isset($_POST['email']) ? trim($_POST['email']) : '';
-
-// Validaciones básicas
-if (empty($name) || !preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/u", $name)) {
-    echo json_encode(['success' => false, 'message' => 'El nombre solo debe contener letras y espacios.']);
-    exit;
-}
-
-if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo json_encode(['success' => false, 'message' => 'El correo electrónico no es válido.']);
-    exit;
-}
+// Datos de conexión a la base de datos
+$host = "PMYSQL181.dns-servicio.com:3306";  // Cambia esto si tu DB está en otro servidor
+$dbname = "10718674_prelanzamiento";
+$username = "Javier";
+$password = "u70q0Z2p@";
 
 try {
-    // Configuración de la conexión a la base de datos
-    $dsn = 'mysql:host=PMYSQL181.dns-servicio.com;port=3306;dbname=10718674_prelanzamiento;charset=utf8mb4';
-    $username = 'Javier';
-    $password = 'u70q0Z2p@';
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $pdo = new PDO($dsn, $username, $password, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_EMULATE_PREPARES => false
-    ]);
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Verificar si los datos fueron enviados
+        if (!isset($_POST['name']) || !isset($_POST['email'])) {
+            die("Error: No llegaron los datos.");
+        }
 
-    // Preparar la consulta SQL
-    $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, correo) VALUES (:name, :email)");
-    $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        // Obtener y limpiar los valores
+        $name = trim($_POST['name']);
+        $email = trim($_POST['email']);
 
-    // Ejecutar la consulta
-    if ($stmt->execute()) {
-        echo json_encode(['success' => true, 'message' => 'Registro exitoso.']);
-        exit;
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Error al registrar los datos.']);
-        exit;
+        // Validar que no estén vacíos
+        if (empty($name) || empty($email)) {
+            die("Error: Todos los campos son obligatorios.");
+        }
+
+        // Validar formato de email
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            die("Error: Correo electrónico no válido.");
+        }
+
+        // Verificar si el email ya está registrado
+        $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE email = ?");
+        $stmt->execute([$email]);
+        if ($stmt->fetch()) {
+            die("Error: Este correo ya está registrado.");
+        }
+
+        // Insertar en la base de datos
+        $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, email) VALUES (?, ?)");
+        $stmt->execute([$name, $email]);
+
+        echo "Registro exitoso. ¡Gracias por registrarte!";
     }
 } catch (PDOException $e) {
-    // Registrar el error en el servidor para depuración
-    error_log("Error de base de datos: " . $e->getMessage());
-    echo json_encode(['success' => false, 'message' => 'Error en la base de datos. Por favor, inténtalo de nuevo.']);
-    exit;
+    die("Error de conexión: " . $e->getMessage());
 }
+?>
+
