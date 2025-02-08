@@ -287,7 +287,8 @@
                         <h2>Regístrate en nuestra lista de espera</h2>
                         <form id="registrationForm"
                             action="https://41095220.servicio-online.net/APIprelanzamiento/process_form.php"
-                            method="POST">
+                            method="POST" onsubmit="redirectToPatreon()">
+
                             <div class="mb-3">
                                 <input type="text" class="form-control" id="name" name="name"
                                     placeholder="Nombre completo" required>
@@ -349,15 +350,23 @@
 
     <!-- Script personalizado para habilitar el botón -->
     <script>
-
-
-        // Redirigir después de 3 segundos
-        setTimeout(() => {
-            window.location.href = 'https://www.patreon.com/EstudianteProgramador/redeem/343E7';
-        }, 3000);
-
-
+        function redirectToPatreon() {
+            // Mostrar mensaje en la página
+            const messageDiv = document.createElement("div");
+            messageDiv.textContent = "Todo correcto, gracias por registrarte. En unos segundos te redirigiremos a Patreon.";
+            messageDiv.style.color = "white";
+            messageDiv.style.fontSize = "18px";
+            messageDiv.style.textAlign = "center";
+            messageDiv.style.marginTop = "20px";
+            document.body.appendChild(messageDiv);
+    
+            // Redirigir después de 3 segundos
+            setTimeout(() => {
+                window.location.href = 'https://www.patreon.com/EstudianteProgramador/redeem/343E7';
+            }, 3000); // 3000 ms = 3 segundos
+        }
     </script>
+    
 </body>
 
 </html>
