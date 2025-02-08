@@ -349,18 +349,16 @@
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
     <!-- Script personalizado para habilitar el botón -->
+     
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Verificar si la URL contiene "?success=1"
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has("success")) {
-                const messageDiv = document.createElement("div");
-                messageDiv.textContent = "Todo correcto, gracias por registrarte. En unos segundos te redirigiremos a Patreon.";
-                messageDiv.style.color = "white";
-                messageDiv.style.fontSize = "18px";
-                messageDiv.style.textAlign = "center";
-                messageDiv.style.marginTop = "20px";
-                document.body.appendChild(messageDiv);
+                const successMessage = document.getElementById("successMessage");
+                if (successMessage) {
+                    successMessage.classList.remove("d-none"); // Hacer visible el mensaje
+                }
     
                 // Redirigir a Patreon después de 3 segundos
                 setTimeout(() => {
