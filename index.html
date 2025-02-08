@@ -300,7 +300,7 @@
                             <button type="submit" class="btn btn-primary">¡Obtener mi mes gratis!</button>
                             <div id="message" class="message"></div>
                         </form>
-                        <div class="mt-3 text-center text-success d-none" id="successMessage">
+                        <div id="successMessage" class="mt-3 text-center text-success" style="display: none;">
                             Todo correcto, gracias por registrarte. En unos segundos te redirigiremos a Patreon.
                         </div>
                         <div class="mt-3 text-center text-danger d-none" id="errorMessage">
@@ -349,7 +349,7 @@
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
     <!-- Script personalizado para habilitar el botón -->
-     
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Verificar si la URL contiene "?success=1"
@@ -357,7 +357,7 @@
             if (urlParams.has("success")) {
                 const successMessage = document.getElementById("successMessage");
                 if (successMessage) {
-                    successMessage.classList.remove("d-none"); // Hacer visible el mensaje
+                    successMessage.style.display = "block"; // Hacer visible el mensaje
                 }
     
                 // Redirigir a Patreon después de 3 segundos
