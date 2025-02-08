@@ -289,12 +289,12 @@
                             action="https://41095220.servicio-online.net/APIprelanzamiento/process_form.php"
                             method="POST">
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Nombre completo"
-                                    required>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    placeholder="Nombre completo" required>
                             </div>
                             <div class="mb-3">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Correo electrónico"
-                                    required>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="Correo electrónico" required>
                             </div>
                             <button type="submit" class="btn btn-primary">¡Obtener mi mes gratis!</button>
                             <div id="message" class="message"></div>
@@ -306,7 +306,7 @@
                             Error al enviar el mensaje. Por favor, inténtalo de nuevo.
                         </div>
                     </section>
-                    
+
                     <!-- Iconos Sociales -->
                     <div class="social-icons mt-5">
                         <a href="https://www.patreon.com/c/EstudianteProgramador?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_fan&utm_content=join_link"
@@ -349,65 +349,14 @@
 
     <!-- Script personalizado para habilitar el botón -->
     <script>
-        document.getElementById('registrationForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Evitar el envío tradicional del formulario
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
 
-            // Deshabilitar el botón de envío para evitar múltiples envíos
-            const submitButton = document.querySelector('#registrationForm button');
-            if (submitButton) {
-                submitButton.disabled = true;
-            }
+        // Redirigir después de 3 segundos
+        setTimeout(() => {
+            window.location.href = 'https://www.patreon.com/EstudianteProgramador/redeem/343E7';
+        }, 3000);
 
-            fetch('https://41095220.servicio-online.net/APIprelanzamiento/process_form.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`
-            })
-            .then(response => response.json())
-            .then(data => {
-                const messageDiv = document.getElementById('message');
-                if (messageDiv) {
-                    if (data.success) {
-                        messageDiv.textContent = 'Todo correcto, gracias por registrarte. En unos segundos te redirigiremos a Patreon.';
-                        messageDiv.classList.add('success');
 
-                        // Redirigir después de 3 segundos
-                        setTimeout(() => {
-                            window.location.href = 'https://www.patreon.com/EstudianteProgramador/redeem/343E7';
-                        }, 3000);
-                    } else {
-                        messageDiv.textContent = data.message || 'Error al enviar el mensaje. Por favor, inténtalo de nuevo.';
-                        messageDiv.classList.add('error');
-                    }
-                } else {
-                    console.error("Element 'message' not found in the DOM.");
-                }
-
-                // Habilitar nuevamente el botón de envío
-                if (submitButton) {
-                    submitButton.disabled = false;
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-
-                const messageDiv = document.getElementById('message');
-                if (messageDiv) {
-                    messageDiv.textContent = 'Ocurrió un error inesperado. Por favor, inténtalo de nuevo.';
-                    messageDiv.classList.add('error');
-                }
-
-                // Habilitar nuevamente el botón de envío
-                if (submitButton) {
-                    submitButton.disabled = false;
-                }
-            });
-        });
     </script>
 </body>
 
