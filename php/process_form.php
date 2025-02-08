@@ -19,6 +19,14 @@ try {
         $name = trim($_POST['name']);
         $email = trim($_POST['email']);
 
+
+        echo "<pre>";
+        print_r($_POST);
+        echo "</pre>";
+        exit;
+
+
+
         // Validar que no estén vacíos
         if (empty($name) || empty($email)) {
             die("Error: Todos los campos son obligatorios.");
@@ -45,5 +53,3 @@ try {
 } catch (PDOException $e) {
     die("Error de conexión: " . $e->getMessage());
 }
-?>
-
