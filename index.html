@@ -350,21 +350,24 @@
 
     <!-- Script personalizado para habilitar el botón -->
     <script>
-        function redirectToPatreon() {
-            // Mostrar mensaje en la página
-            const messageDiv = document.createElement("div");
-            messageDiv.textContent = "Todo correcto, gracias por registrarte. En unos segundos te redirigiremos a Patreon.";
-            messageDiv.style.color = "white";
-            messageDiv.style.fontSize = "18px";
-            messageDiv.style.textAlign = "center";
-            messageDiv.style.marginTop = "20px";
-            document.body.appendChild(messageDiv);
+        document.addEventListener("DOMContentLoaded", function () {
+            // Verificar si la URL contiene "?success=1"
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has("success")) {
+                const messageDiv = document.createElement("div");
+                messageDiv.textContent = "Todo correcto, gracias por registrarte. En unos segundos te redirigiremos a Patreon.";
+                messageDiv.style.color = "white";
+                messageDiv.style.fontSize = "18px";
+                messageDiv.style.textAlign = "center";
+                messageDiv.style.marginTop = "20px";
+                document.body.appendChild(messageDiv);
     
-            // Redirigir después de 3 segundos
-            setTimeout(() => {
-                window.location.href = 'https://www.patreon.com/EstudianteProgramador/redeem/343E7';
-            }, 3000); // 3000 ms = 3 segundos
-        }
+                // Redirigir a Patreon después de 3 segundos
+                setTimeout(() => {
+                    window.location.href = 'https://www.patreon.com/EstudianteProgramador/redeem/343E7';
+                }, 3000);
+            }
+        });
     </script>
     
 </body>
